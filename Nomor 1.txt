@@ -1,0 +1,21 @@
+USE world;
+
+-- nomor 1 -- 
+SELECT * FROM city where countrycode = 'idn' order by population desc limit 10;
+
+-- nomor 2 --  
+SELECT id, city.name as nama_kota, district,
+SUM(Population) AS Population FROM city GROUP BY Nama_kota ORDER BY Population DESC limit 10;
+
+-- nomor 3 -- 
+Select * from countrylanguage;
+select * from country;
+SELECT code as countrycode, name, language, isOfficial, percentage from country, 
+countrylanguage where country.code = countrylanguage.countrycode and language = 'English' and IsOfficial = 'T'
+order by percentage desc limit 10;
+
+-- nomor 4-- 
+SELECT name as Nama, continent as Benua, lifeexpectancy as AngkaHarapanHidup, GNP from country 
+where continent = 'Asia' and lifeexpectancy > (select avg(lifeexpectancy) from country where continent = 'Europe')
+order by lifeexpectancy desc;
+
